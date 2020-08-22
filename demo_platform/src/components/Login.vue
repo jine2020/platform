@@ -1,50 +1,23 @@
 <template>
   <v-app id="inspire">
     <v-main>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col
-            cols="12"
-            sm="8"
-            md="4"
-          >
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="8" md="4">
             <v-card class="elevation-12">
-              <v-toolbar
-                color="primary"
-                dark
-                flat
-              >
+              <v-toolbar color="primary" dark flat>
                 <v-toolbar-title>登录</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-tooltip bottom>
                   <template v-slot:activator="{ on }">
-                    <v-btn
-                      :href="source"
-                      icon
-                      large
-                      target="_blank"
-                      v-on="on"
-                    >
-                     
-                    </v-btn>
+                    <v-btn :href="source" icon large target="_blank" v-on="on"></v-btn>
                   </template>
                   <span>Source</span>
                 </v-tooltip>
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <v-text-field
-                    label="用户名"
-                    name="用户名"
-                    prepend-icon="mdi-account"
-                    type="text"
-                  ></v-text-field>
+                  <v-text-field label="用户名" name="用户名" prepend-icon="mdi-account" type="text"></v-text-field>
 
                   <v-text-field
                     id="password"
@@ -68,10 +41,10 @@
 </template>
 
 <script>
-  export default {
-      name: "Login",
-    props: {
-      source: String,
-    },
-  }
+export default {
+  name: "Login",
+  props: {
+    source: String,
+  },
+};
 </script>
