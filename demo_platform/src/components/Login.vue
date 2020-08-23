@@ -17,9 +17,16 @@
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <v-text-field label="用户名" name="用户名" prepend-icon="mdi-account" type="text"></v-text-field>
+                  <v-text-field
+                    v-model="username"
+                    label="用户名"
+                    name="用户名"
+                    prepend-icon="mdi-account"
+                    type="text"
+                  ></v-text-field>
 
                   <v-text-field
+                    v-model="password"
                     id="password"
                     label="密码"
                     name="密码"
@@ -30,7 +37,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">登录</v-btn>
+                <v-btn color="primary" @click="login">登录</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -41,10 +48,31 @@
 </template>
 
 <script>
+import http from "@/api/http";
 export default {
   name: "Login",
   props: {
     source: String,
+  },
+  data: function () {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    login: function () {
+      http
+        .post("/login", { username: this.username, password: this.password })
+        .then((res) => {
+          console.log(res);
+          if (res.data.errcode === 0) {
+            this.$router.push("dashboard");
+          } else {
+            window.alert('用户名或者密码错误！')
+          }
+        });
+    },
   },
 };
 </script>
