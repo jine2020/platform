@@ -14,15 +14,11 @@
           transition="scale-transition"
           width="40"
         />
-         <v-toolbar-title>测试平台demo</v-toolbar-title>
+         <v-toolbar-title>测试管理平台</v-toolbar-title>
       </div>
-
       <v-spacer></v-spacer>
     </v-app-bar>
-
-    <v-main>
-      <router-view></router-view>
-    </v-main>
+    <router-view></router-view>
   </v-app>
 </template>
 
