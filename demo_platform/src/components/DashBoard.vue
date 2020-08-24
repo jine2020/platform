@@ -11,15 +11,25 @@
               <a href="#!" class="body-2 black--text">EDIT</a>
             </v-col>
           </v-row>
-          <v-list-item v-else :key="item.text" link>
-            <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <router-link to="/testcase">
-                <v-list-item-title>{{ item.text }}</v-list-item-title>
-              </router-link>
-            </v-list-item-content>
+          <v-list-item v-else :key="item.code" link>
+            <v-row>
+              <v-col>
+                <v-icon>mdi-plus</v-icon>
+                <v-btn @click="caselist" icon style="width: 200px">用例列表</v-btn>
+              </v-col>
+              <v-col>
+                <v-icon>mdi-cellphone-link</v-icon>
+                <v-btn @click="caselists" icon style="width: 200px">测试用例集</v-btn>
+              </v-col>
+              <v-col>
+                <v-icon>mdi-cog</v-icon>
+                <v-btn @click="sysset" icon style="width: 200px">系统设置</v-btn>
+              </v-col>
+              <v-col>
+                <v-icon>mdi-help-circle</v-icon>
+                <v-btn @click="help" icon style="width: 200px">帮助</v-btn>
+              </v-col>
+            </v-row>
           </v-list-item>
         </template>
       </v-list>
@@ -34,13 +44,15 @@
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn>
-      <v-btn icon>退出</v-btn>
+      <v-btn icon @click="logout">退出</v-btn>
     </v-app-bar>
     <v-main>
+      <!-- <v-alert type="info" :value="t" style="width: 300px">获取数据成功</v-alert> -->
       <slot />
     </v-main>
   </v-app>
 </template>
+
 
 <script>
 export default {
@@ -50,15 +62,26 @@ export default {
   },
   data: () => ({
     drawer: null,
-    items: [
-      {
-        icon: "mdi-cellphone-link",
-        text: "测试用例集",
-      },
-      { icon: "mdi-plus", text: "用例列表" },
-      { icon: "mdi-cog", text: "系统设置" },
-      { icon: "mdi-help-circle", text: "帮助" },
-    ],
+    items: [{ icon: "mdi-plus", text: "用例列表" }],
   }),
+  methods: {
+    caselist: function () {
+      if (this.$route.path === "/dashboard") {
+        this.$router.push("testcase");
+      }
+    },
+    caselists: function () {
+      window.alert("建设中");
+    },
+    sysset: function () {
+      window.alert("建设中");
+    },
+    help: function () {
+      window.alert("建设中");
+    },
+    logout: function () {
+      this.$router.push("login");
+    },
+  },
 };
 </script>

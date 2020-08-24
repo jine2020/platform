@@ -66,10 +66,10 @@ export default {
         .post("/login", { username: this.username, password: this.password })
         .then((res) => {
           if (res.data.errcode === 0) {
-            localStorage.setItem("token",res.data.data.token)
+            localStorage.setItem("token", res.data.data.token);
             this.$router.push("dashboard");
           } else {
-            window.alert('用户名或者密码错误！')
+            window.alert("用户名或者密码错误！");
           }
         });
     },

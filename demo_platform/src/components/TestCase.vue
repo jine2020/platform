@@ -42,7 +42,7 @@
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.desc" label="描述"></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="60">
+                  <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.data" label="内容"></v-text-field>
                   </v-col>
                 </v-row>
@@ -120,7 +120,7 @@
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? '新建测试用例' : 'Edit Item'
+        return this.editedIndex === -1 ? '新建测试用例' : '编辑测试用例'
       },
     },
 
@@ -164,8 +164,14 @@
       save () {
         if (this.editedIndex > -1) {
           Object.assign(this.desserts[this.editedIndex], this.editedItem)
+          http.put("/testcase",this.editedItem).then(res=>{
+              console.log(res)
+          })
         } else {
           this.desserts.push(this.editedItem)
+          http.post("/testcase",this.editedItem).then(res=>{
+              console.log(res)
+          })
         }
         this.close()
       },
